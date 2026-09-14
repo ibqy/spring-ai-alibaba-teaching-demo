@@ -1,0 +1,36 @@
+# ============================================================
+# Spring AI Alibaba 教学演示项目 - 配置文件
+# 作者：xb  |  日期：2026-09-10
+# ------------------------------------------------------------
+# 核心配置：通过环境变量 DASHSCOPE_API_KEY 注入阿里云百炼 API Key，
+# 切勿把真实 Key 写死在 yml 里（本文件会提交到 Git 仓库）。
+# ============================================================
+server:
+  port: 8080              # 服务端口
+
+spring:
+  application:
+    name: spring-ai-alibaba-teaching-demo
+
+  ai:
+    dashscope:
+      # 通义千问 DashScope API Key（从环境变量读取，兼容官方推荐命名）
+      api-key: ${DASHSCOPE_API_KEY:demo-placeholder}
+      # 也可以显式指定别名，二者等价：${AI_DASHSCOPE_API_KEY:demo-placeholder}
+      chat:
+        options:
+          model: qwen-plus        # 默认模型（阿里云百炼的旗舰对话模型 qwen-plus）
+          temperature: 0.7        # 采样温度：越低越确定，越高越有创造性
+          max-tokens: 2048        # 单次生成的最大 token 数
+      embedding:
+        options:
+          model: text-embedding-v3  # 文本向量模型（用于 RAG / 知识库检索）
+
+# ============================================================
+# 温馨提示
+# 1) 如何获取 API Key：阿里云百炼平台 → API-KEY 管理
+#    https://help.aliyun.com/zh/model-studio/get-api-key
+# 2) Linux/macOS 设置环境变量示例：
+#    export DASHSCOPE_API_KEY=你的真实Key
+# 3) 可用模型常用值：qwen-turbo / qwen-plus / qwen-max / qwen-flash
+# ============================================================

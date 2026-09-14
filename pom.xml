@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ============================================================
+  Spring AI Alibaba 教学演示项目
+  作者：ibqy  |  日期：2026-09-10
+  说明：渐进式学习如何用 Spring AI Alibaba 对接阿里云通义千问（DashScope）
+  ============================================================
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承 Spring Boot 父工程，统一管理 Spring 相关依赖版本 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.xb.springai</groupId>
+    <artifactId>spring-ai-alibaba-teaching-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>spring-ai-alibaba-teaching-demo</name>
+    <description>Spring AI Alibaba 教学演示项目（作者 xb）</description>
+
+    <properties>
+        <!-- JDK 版本：Spring AI Alibaba 要求 JDK 17 及以上，这里用 21 -->
+        <java.version>21</java.version>
+        <!-- Spring AI Alibaba 版本：BOM 统一管理所有 com.alibaba.cloud.ai 子模块版本 -->
+        <spring-ai-alibaba.version>1.0.0.2</spring-ai-alibaba.version>
+    </properties>
+
+    <!-- 依赖版本统一管理，子模块无需再写版本号 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba.cloud.ai</groupId>
+                <artifactId>spring-ai-alibaba-bom</artifactId>
+                <version>${spring-ai-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- 核心：让项目自动装配出与通义千问 DashScope 通信的 ChatClient / ChatModel / EmbeddingModel -->
+        <dependency>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter-dashscope</artifactId>
+        </dependency>
+
+        <!-- Web 能力：提供 REST 接口（@RestController） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 测试能力 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Spring Boot 打包插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 注意：spring-ai 核心依赖可能尚未同步到中央仓库，强制走阿里云官方源 -->
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>

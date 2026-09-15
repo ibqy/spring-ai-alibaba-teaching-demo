@@ -18,4 +18,7 @@ target/
 
 # API Key 等本地敏感配置
 .env
-application-local.yml
+application-local.ymlnode_modules
+
+docs/.vitepress/cache
+docs/.vitepress/dist

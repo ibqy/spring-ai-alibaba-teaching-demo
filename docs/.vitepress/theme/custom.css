@@ -1,0 +1,50 @@
+/* Spring AI Alibaba Teaching — orange accent */
+:root {
+  --vp-c-brand-1: #c2410c;
+  --vp-c-brand-2: #ea580c;
+  --vp-c-brand-3: #f97316;
+  --vp-c-brand-soft: rgba(234, 88, 12, 0.12);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #c2410c 35%, #fdba74);
+}
+
+.dark {
+  --vp-c-brand-1: #fb923c;
+  --vp-c-brand-2: #f97316;
+  --vp-c-brand-3: #f97316;
+}
+
+/* signature block shell */
+.sig { max-width: 896px; margin: 0 auto 44px; padding: 0 24px; }
+.sig-card { border: 1px solid var(--vp-c-divider); border-radius: 14px; background: var(--vp-c-bg); padding: 26px 28px 22px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); }
+.dark .sig-card { box-shadow: none; }
+.sig-label { font-family: var(--vp-font-family-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--vp-c-brand-1); }
+.sig-title { font-size: 15px; font-weight: 600; margin: 6px 0 0; color: var(--vp-c-text-1); }
+.sig-note { margin: 18px 0 0; padding-top: 14px; border-top: 1px dashed var(--vp-c-divider); font-size: 13px; line-height: 1.75; color: var(--vp-c-text-2); }
+
+.sg-node, .sg-fill, .sg-line { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 500; border-radius: 8px; padding: 7px 11px; white-space: nowrap; }
+.sg-node { color: var(--vp-c-text-1); border: 1px solid var(--vp-c-divider); background: var(--vp-c-bg-soft); }
+.sg-line { color: var(--vp-c-brand-1); border: 1px solid var(--vp-c-brand-1); background: var(--vp-c-brand-soft); }
+.sg-fill { color: #fff; border: 1px solid var(--vp-c-brand-1); background: var(--vp-c-brand-1); }
+.dark .sg-fill { color: #2a1206; }
+.sg-arr { color: var(--vp-c-text-3); font-size: 12px; user-select: none; }
+.sg-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.sg-chip { font-family: var(--vp-font-family-mono); font-size: 11.5px; color: var(--vp-c-text-3); border: 1px solid var(--vp-c-divider); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+
+.sig-more { text-align: center; margin: 0 0 44px; }
+.sig-more a { font-family: var(--vp-font-family-mono); font-size: 12px; color: var(--vp-c-text-3); text-decoration: none; border-bottom: 1px dashed var(--vp-c-divider); padding-bottom: 2px; }
+.sig-more a:hover { color: var(--vp-c-brand-1); border-bottom-color: var(--vp-c-brand-1); }
+
+/* 11-demo learning path */
+.al-path { position: relative; display: flex; justify-content: space-between; margin-top: 28px; padding: 0 4px; }
+.al-track { position: absolute; top: 7px; left: 12px; right: 12px; height: 2px; background: linear-gradient(90deg, var(--vp-c-divider), var(--vp-c-brand-1) 60%, var(--vp-c-brand-1)); border-radius: 1px; }
+.al-st { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.al-st::before { content: ''; width: 14px; height: 14px; border-radius: 50%; background: var(--vp-c-bg); border: 2.5px solid var(--vp-c-divider); }
+.al-st b { font-size: 11px; font-weight: 600; color: var(--vp-c-text-3); font-family: var(--vp-font-family-mono); }
+.al-st i { font-style: normal; font-size: 11.5px; color: var(--vp-c-text-3); white-space: nowrap; }
+.al-mil::before { border-color: var(--vp-c-brand-1); background: var(--vp-c-brand-1); box-shadow: 0 0 0 4px var(--vp-c-brand-soft); }
+.al-mil i { color: var(--vp-c-brand-1); font-weight: 600; }
+@media (max-width: 640px) {
+  .al-st b { display: none; }
+  .al-st i { font-size: 10px; }
+}

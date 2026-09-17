@@ -1,5 +1,7 @@
 package com.xb.springai.controller.demo11;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * demo11 · 订餐客服的请求体 —— 客户端 POST 的 JSON 结构
  *
@@ -17,6 +19,7 @@ package com.xb.springai.controller.demo11;
  */
 public record Demo11AskRequest(
         String conversationId,  // 会话 ID（可选，不传用默认）
+        @NotBlank(message = "message 不能为空")
         String message,         // 顾客消息（必填）
         Boolean enableSearch    // 是否联网搜索（可选，null 视为 false）
 ) {

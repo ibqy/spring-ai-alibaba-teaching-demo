@@ -58,6 +58,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- 参数校验：@NotBlank / @NotNull 等 Jakarta Validation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
         <!-- 测试能力 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

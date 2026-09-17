@@ -4,6 +4,7 @@ import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +46,7 @@ public class Demo10CustomerServiceController {
     }
 
     @PostMapping("/ask")
-    public String ask(@RequestBody Demo10AskRequest req) {
+    public String ask(@Valid @RequestBody Demo10AskRequest req) {
         String conversationId = req.conversationId() == null || req.conversationId().isBlank()
                 ? "default" : req.conversationId();
 
@@ -61,7 +62,7 @@ public class Demo10CustomerServiceController {
      * 附带联网搜索的客服回答（用于"今天天气""最近新闻"之类实时问题）。
      */
     @PostMapping("/ask-with-search")
-    public String askWithSearch(@RequestBody Demo10AskRequest req) {
+    public String askWithSearch(@Valid @RequestBody Demo10AskRequest req) {
         return chatClient.prompt(req.message())
                 .options(DashScopeChatOptions.builder()
                         .withEnableSearch(true)   // 开启联网搜索（DashScope 特色）

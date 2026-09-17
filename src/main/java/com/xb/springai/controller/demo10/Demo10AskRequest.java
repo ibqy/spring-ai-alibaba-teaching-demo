@@ -1,5 +1,7 @@
 package com.xb.springai.controller.demo10;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * 客服接口的请求体 —— 客户端 POST 的 JSON 结构
  *
@@ -10,6 +12,7 @@ package com.xb.springai.controller.demo10;
  */
 public record Demo10AskRequest(
         String conversationId,  // 会话 ID（可选，不传则用默认）
+        @NotBlank(message = "message 不能为空")
         String message          // 顾客消息（必填）
 ) {
 }

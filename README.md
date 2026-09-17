@@ -42,6 +42,8 @@ mvn spring-boot:run
 | 会话记忆 | MessageWindowChatMemory（20 条窗口） |
 | DashScope 联网搜索 | `DashScopeChatOptions.withEnableSearch(true)` |
 | 流式 SSE 输出 | `Flux<String>` + `text/event-stream` |
+| 全局异常处理 | `@ControllerAdvice` + `ApiResponse` 统一响应包装 |
+| 参数校验 | Jakarta Validation（`@NotBlank`）+ `@Valid` |
 | VitePress 文档站 | 教学文档 + 自定义主题 + 学习路径时间线 |
 
 ### 教学简化（生产需增强）
@@ -51,7 +53,6 @@ mvn spring-boot:run
 | 向量存储用 SimpleVectorStore（内存） | Milvus / Elasticsearch / PgVector |
 | 会话记忆用内存 Map | Redis 分布式会话 |
 | 工具数据硬编码在 Map | 数据库 / 微服务查询 |
-| 无全局异常处理 | `@ControllerAdvice` 统一响应 |
 | 无认证鉴权 | Spring Security + JWT |
 
 ### 未实现（需真实 API Key）
@@ -69,7 +70,8 @@ mvn spring-boot:run
 | `WeatherToolsTest` | 2 | 已知城市天气、未知城市兜底 |
 | `AfterSalesToolTest` | 5 | 4 种商品政策查询、未知商品兜底 |
 | `ShopServiceToolTest` | 8 | 套餐查询、全部套餐列表、优惠活动、空参默认 |
-| **合计** | **15** | |
+| `GlobalExceptionHandlerTest` | 6 | ApiResponse 包装、校验异常、业务异常、未知异常 |
+| **合计** | **21** | |
 
 ```bash
 mvn test

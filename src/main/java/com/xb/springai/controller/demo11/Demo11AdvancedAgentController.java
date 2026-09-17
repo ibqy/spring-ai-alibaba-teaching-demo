@@ -1,6 +1,7 @@
 package com.xb.springai.controller.demo11;
 
 import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatOptions;
+import jakarta.validation.Valid;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -111,7 +112,7 @@ public class Demo11AdvancedAgentController {
      * </ol>
      */
     @PostMapping("/ask")
-    public String ask(@RequestBody Demo11AskRequest req) {
+    public String ask(@Valid @RequestBody Demo11AskRequest req) {
         String conversationId = (req.conversationId() == null || req.conversationId().isBlank())
                 ? "default" : req.conversationId();
 

@@ -28,7 +28,7 @@ cd spring-ai-alibaba-teaching-demo
 mvn spring-boot:run
 ```
 
-详细教学指南 → [docs/](docs/spring-ai-alibaba-teaching-guide/)
+详细教学指南 → [VitePress 文档站](docs/) · [HTML 图文版](docs/spring-ai-alibaba-teaching-guide/)
 
 ## 实现边界
 

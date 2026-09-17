@@ -31,7 +31,10 @@ export default defineConfig({
       {
         text: '教学文档',
         items: [
-          { text: '01 · Demo 总览', link: '/01-Demo总览' }
+          { text: '01 · Demo 总览', link: '/01-Demo总览' },
+          { text: '02 · 基础能力', link: '/02-基础能力' },
+          { text: '03 · 核心进阶', link: '/03-核心进阶' },
+          { text: '04 · 综合实战', link: '/04-综合实战' }
         ]
       }
     ],

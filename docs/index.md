@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Spring AI Alibaba 教学
   text: 通义千问生态教学项目
-  tagline: 11 个 Demo 玩转 Spring AI Alibaba + DashScope 通义千问：对话、RAG、工具调用、多智能体，到综合客服与知识型客服实战
+  tagline: 13 个 Demo 玩转 Spring AI Alibaba + DashScope 通义千问：对话、RAG、工具调用、MCP、A2A，到综合客服与知识型客服实战
   actions:
     - theme: brand
       text: Demo 总览 →
@@ -27,8 +27,8 @@ features:
     title: 工具调用
     details: Function Calling 让模型操作真实业务能力
   - icon: 🤖
-    title: 多智能体
-    details: 多 Agent 协作分工，处理单一模型搞不定的复杂任务
+    title: MCP 与 A2A
+    details: MCP 接入外部工具，A2A 实现 Agent 间通信，两大协议全覆盖
   - icon: 🎧
     title: Demo 10 · 综合客服
     details: 意图识别 + 工具调用 + 记忆的组合式客服应用

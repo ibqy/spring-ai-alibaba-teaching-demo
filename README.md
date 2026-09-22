@@ -2,7 +2,7 @@
 
 > 作者：xb ｜ 日期：2026-09-10
 
-基于 Spring AI Alibaba 1.0.0.2 + DashScope 通义千问，演示 11 个由浅入深的 AI 教学示例。
+基于 Spring AI Alibaba 1.0.0.2 + DashScope 通义千问，演示 13 个由浅入深的 AI 教学示例。
 
 ## Demo 一览
 
@@ -19,6 +19,8 @@
 | demo09 | 列表输出 | `GET /api/demo09/list` |
 | demo10 | 综合客服（记忆+RAG+工具） | `POST /api/demo10/ask` |
 | demo11 | 知识型客服（深阶） | `POST /api/demo11/ask` |
+| demo12 | MCP 客户端 | `GET /api/demo12/ask` |
+| demo13 | A2A 智能体通信 | `GET /api/demo13/ask` |
 
 ## 快速开始
 
@@ -36,7 +38,7 @@ mvn spring-boot:run
 
 | 功能 | 说明 |
 |------|------|
-| 11 个渐进式 Demo | 基础对话 → 流式 → 结构化输出 → 工具调用 → RAG → 综合客服 |
+| 13 个渐进式 Demo | 基础对话 → 流式 → 结构化输出 → 工具调用 → RAG → 综合客服 → MCP → A2A |
 | Function Calling | 天气查询 / 售后政策 / 订餐服务 3 类工具 |
 | RAG 检索增强 | SimpleVectorStore + 知识库文档 |
 | 会话记忆 | MessageWindowChatMemory（20 条窗口） |
@@ -44,6 +46,8 @@ mvn spring-boot:run
 | 流式 SSE 输出 | `Flux<String>` + `text/event-stream` |
 | 全局异常处理 | `@ControllerAdvice` + `ApiResponse` 统一响应包装 |
 | 参数校验 | Jakarta Validation（`@NotBlank`）+ `@Valid` |
+| MCP 客户端 | demo12 接入 Model Context Protocol 外部工具 |
+| A2A 服务端 | demo13 接入 Agent-to-Agent 智能体通信协议 |
 | VitePress 文档站 | 教学文档 + 自定义主题 + 学习路径时间线 |
 
 ### 教学简化（生产需增强）
@@ -60,7 +64,6 @@ mvn spring-boot:run
 | 功能 | 说明 |
 |------|------|
 | AI 模型真实调用 | 需配置 DashScope API Key |
-| 多 Agent 协作 | Spring AI Alibaba Agent Framework |
 | 向量数据库持久化 | 需部署 Milvus / ES 等 |
 
 ## 测试覆盖

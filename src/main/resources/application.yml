@@ -26,6 +26,27 @@ spring:
         options:
           model: text-embedding-v3  # 文本向量模型（用于 RAG / 知识库检索）
 
+    # ---------------------------------------------------------------
+    # demo12：MCP 客户端配置（默认关闭）
+    # 需要安装 Node.js，然后设置 MCP_ENABLED=true
+    # ---------------------------------------------------------------
+    mcp:
+      client:
+        enabled: ${MCP_ENABLED:false}
+        stdio:
+          servers:
+            filesystem:
+              command: npx
+              args: ["-y", "@modelcontextprotocol/server-filesystem", "."]
+
+    # ---------------------------------------------------------------
+    # demo13：A2A 服务端配置（默认关闭）
+    # 设置 A2A_ENABLED=true 启用
+    # ---------------------------------------------------------------
+    a2a:
+      server:
+        enabled: ${A2A_ENABLED:false}
+
 # ============================================================
 # 温馨提示
 # 1) 如何获取 API Key：阿里云百炼平台 → API-KEY 管理

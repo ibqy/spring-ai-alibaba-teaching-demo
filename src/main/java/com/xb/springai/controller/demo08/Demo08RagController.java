@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
  * 这样回答既准确、又<strong>不会编造</strong>资料里没有的信息。</p>
  *
  * <p><b>运行</b>：<code>GET /api/demo08/ask?question=你们几点营业？</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo08")
@@ -37,6 +39,15 @@ public class Demo08RagController {
         this.vectorStore = vectorStore;
     }
 
+    /**
+     * 基于 RAG 的知识问答接口。
+     *
+     * <p>完整链路：用户提问 → 向量库检索 → 拼上下文 → 模型基于资料回答。
+     * 通过"只依据资料回答"的约束，有效防止模型编造不存在的信息。</p>
+     *
+     * @param question 用户的问题
+     * @return 模型基于店铺资料生成的回答
+     */
     @GetMapping("/ask")
     public String ask(@RequestParam(defaultValue = "你们几点营业？") String question) {
 

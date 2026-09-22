@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 每次传入不同变量即可产出不同的提问，避免重复拼接字符串。</p>
  *
  * <p><b>运行</b>：<code>GET /api/demo04/poem?topic=春天&style=婉约</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo04")

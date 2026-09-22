@@ -65,6 +65,8 @@ import java.util.stream.Collectors;
  *    {"conversationId":"vip-01","message":"双人下午茶多少钱？有货吗？今天有优惠吗？"}
  * ④ GET  /api/demo11/stream?conversationId=vip-01&message=周末家庭套餐现在是多少钱？库存还有多少？
  * </pre>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo11")

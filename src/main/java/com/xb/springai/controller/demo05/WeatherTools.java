@@ -14,6 +14,8 @@ import java.util.Map;
  * 这个方法暴露成"工具"，当用户问天气时，模型会<b>主动调用这个方法</b>拿到真实数据再回答。</p>
  *
  * <p>真实项目里，@Tool 方法通常去查数据库/第三方 API，这里用 Map 模拟。</p>
+ *
+ * @author ibqy
  */
 public class WeatherTools {
 

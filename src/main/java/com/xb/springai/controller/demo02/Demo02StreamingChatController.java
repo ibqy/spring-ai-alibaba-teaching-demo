@@ -18,6 +18,8 @@ import reactor.core.publisher.Flux;
  *
  * <p><b>运行</b>：<code>GET /api/demo02/chat-stream?message=写一首关于春天的短诗</code>，
  * 浏览器会看到文字流式滚动输出。</p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo02")

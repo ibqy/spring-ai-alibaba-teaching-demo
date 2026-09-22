@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 这是官方 Spring AI 所没有的、通义特有的实用能力。</p>
  *
  * <p><b>运行</b>：<code>GET /api/demo07/search?q=2026年奥运会举办地</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo07")

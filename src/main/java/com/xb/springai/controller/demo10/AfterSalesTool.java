@@ -11,6 +11,8 @@ import java.util.Map;
  * <p>作者：ibqy | 日期：2026-09-10</p>
  *
  * <p>模拟一个售后政策表：商品 -> 可退/可换天数。真实项目里这里通常是查数据库。</p>
+ *
+ * @author ibqy
  */
 public class AfterSalesTool {
 
@@ -23,6 +25,9 @@ public class AfterSalesTool {
 
     /**
      * 查询某商品的售后政策。
+     *
+     * @param item 商品名称，如"咖啡豆""咖啡杯"
+     * @return 该商品的退换货规则描述；未收录时返回友好提示
      */
     @Tool(name = "query_after_sales", description = "查询某商品的退换货政策，返回可退换天数与限制")
     public String queryAfterSales(@ToolParam(required = true, description = "商品名称，例如：咖啡豆") String item) {

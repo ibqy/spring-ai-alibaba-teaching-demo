@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * <p><b>运行</b>：启动后访问
  * <code>GET /api/demo01/chat?message=你好</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo01")

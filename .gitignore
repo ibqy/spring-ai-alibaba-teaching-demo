@@ -22,3 +22,6 @@ application-local.ymlnode_modules
 
 docs/.vitepress/cache
 docs/.vitepress/dist
+
+# 依赖
+node_modules/

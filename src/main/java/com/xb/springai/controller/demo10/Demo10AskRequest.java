@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotBlank;
  *
  * <p>字段：<code>conversationId</code> 标识一个顾客会话（用于记忆隔离），
  * <code>message</code> 是顾客说的话。</p>
+ *
+ * @author ibqy
  */
 public record Demo10AskRequest(
         String conversationId,  // 会话 ID（可选，不传则用默认）

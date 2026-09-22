@@ -16,6 +16,8 @@ import jakarta.validation.constraints.NotBlank;
  *   <li>{@code message}：顾客说的话（必填）。</li>
  *   <li>{@code enableSearch}：是否开启 DashScope 联网搜索，处理"今天有什么实时新闻、快递到哪里"这类问题。</li>
  * </ul>
+ *
+ * @author ibqy
  */
 public record Demo11AskRequest(
         String conversationId,  // 会话 ID（可选，不传用默认）

@@ -16,6 +16,8 @@ import org.springframework.context.annotation.Configuration;
  *
  * <p><b>说明</b>：这里用的是<b>进程内内存</b>，重启即清空，适合教学；
  * 生产环境可换成 Redis/数据库实现。</p>
+ *
+ * @author ibqy
  */
 @Configuration
 public class ChatConfig {

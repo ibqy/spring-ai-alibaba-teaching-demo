@@ -21,6 +21,8 @@ import java.util.List;
  * <p><b>典型场景</b>：把用户粘贴的聊天记录 / 邮件 / 单据文本，自动转换为结构化数据入库。</p>
  *
  * <p><b>运行</b>：<code>GET /api/demo09/orders?text=订单A1001买了咖啡30元已支付，订单B2002买了茶叶88元待支付</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo09")
@@ -32,6 +34,15 @@ public class Demo09ListStructuredOutputController {
         this.chatClient = chatClientBuilder.build();
     }
 
+    /**
+     * 从自然语言文本中批量抽取订单信息。
+     *
+     * <p>通过 {@code ParameterizedTypeReference<List<Demo09Order>>} 告诉 Spring AI
+     * 期望的返回类型是列表，框架会自动引导模型输出 JSON 数组并反序列化。</p>
+     *
+     * @param text 包含订单信息的自然语言文本
+     * @return 解析出的订单列表
+     */
     @GetMapping("/orders")
     public List<Demo09Order> parse(@RequestParam(defaultValue = "订单A1001买了咖啡30元已支付，"
             + "订单B2002买了茶叶88元待支付，订单C3003买了杯子25元已发货") String text) {

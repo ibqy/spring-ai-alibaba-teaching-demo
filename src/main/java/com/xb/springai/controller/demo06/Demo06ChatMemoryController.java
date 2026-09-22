@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  * <p><b>运行</b>（注意记忆效果需要连发两句）：
  * <br/>1. <code>GET /api/demo06/chat?conversationId=xb&message=我的名字是小北</code>
  * <br/>2. <code>GET /api/demo06/chat?conversationId=xb&message=我叫什么？</code> ← 它会答"小北"</p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo06")
@@ -42,6 +44,16 @@ public class Demo06ChatMemoryController {
                 .build();
     }
 
+    /**
+     * 带记忆的对话接口。
+     *
+     * <p>相同 {@code conversationId} 的请求共享同一段对话历史，
+     * 记忆顾问会在每次调用前自动把历史消息注入上下文。</p>
+     *
+     * @param conversationId 会话 ID，用于隔离不同用户的对话记忆
+     * @param message        用户消息
+     * @return 模型的回复文本
+     */
     @GetMapping("/chat")
     public String chat(
             @RequestParam(defaultValue = "xb") String conversationId, // 会话 ID：相同 ID 共享记忆

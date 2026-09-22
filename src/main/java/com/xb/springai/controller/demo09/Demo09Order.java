@@ -7,6 +7,8 @@ package com.xb.springai.controller.demo09;
  *
  * <p>结合 demo10 的 {@code ParameterizedTypeReference<List<Demo09Order>>}，
  * 让模型一次输出多张订单的 JSON 数组。</p>
+ *
+ * @author ibqy
  */
 public record Demo09Order(
         String orderId,  // 订单号

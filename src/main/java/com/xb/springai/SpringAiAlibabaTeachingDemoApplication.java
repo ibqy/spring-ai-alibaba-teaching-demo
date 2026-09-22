@@ -15,6 +15,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * <p><b>项目结构</b>：在 {@code controller/} 包下，按 demo01 ~ demoNN 增量组织，
  * 每个 Demo 用最少的代码讲清一个 Spring AI Alibaba 的核心知识点。</p>
+ *
+ * @author ibqy
  */
 @SpringBootApplication
 public class SpringAiAlibabaTeachingDemoApplication {

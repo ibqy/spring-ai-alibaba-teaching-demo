@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
  * </ul>
  *
  * <p><b>运行</b>：POST /api/demo10/ask（body 为 JSON）</p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo10")

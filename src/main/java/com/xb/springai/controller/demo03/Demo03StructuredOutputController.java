@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 只输出符合该结构（字段）的 JSON，并自动反序列化成对象。</p>
  *
  * <p><b>运行</b>：<code>GET /api/demo03/actor?actor=周星驰</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo03")

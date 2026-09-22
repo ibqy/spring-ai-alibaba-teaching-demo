@@ -21,12 +21,22 @@ import java.util.UUID;
  *   <li><b>分类处理</b>：校验异常 → 400、业务异常 → 对应状态码、未知异常 → 500</li>
  *   <li><b>可追踪</b>：每次错误带 requestId，方便日志关联排查</li>
  * </ol>
+ *
+ * @author ibqy
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    /**
+     * 处理参数校验异常（如 @NotBlank、@Valid 校验失败）。
+     *
+     * <p>提取第一个出错字段及其校验消息，返回 400 状态码。</p>
+     *
+     * @param ex 校验异常
+     * @return 包含字段错误信息的统一响应
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<Void> handleValidation(MethodArgumentNotValidException ex) {
@@ -37,12 +47,26 @@ public class GlobalExceptionHandler {
         return ApiResponse.error(400, field);
     }
 
+    /**
+     * 处理业务参数非法异常。
+     *
+     * @param ex 非法参数异常
+     * @return 400 状态码的统一响应
+     */
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<Void> handleIllegalArgument(IllegalArgumentException ex) {
         return ApiResponse.error(400, ex.getMessage());
     }
 
+    /**
+     * 兜底处理所有未预期的异常。
+     *
+     * <p>生成短 requestId 便于日志追踪，同时避免向用户暴露异常堆栈细节。</p>
+     *
+     * @param ex 未处理的异常
+     * @return 500 状态码的统一响应，附带 requestId
+     */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<Void> handleUnknown(Exception ex) {

@@ -24,6 +24,8 @@ import java.util.List;
  * {@link SimpleVectorStore}（内存向量库，适合教学）。</p>
  *
  * <p><b>注意</b>：SimpleVectorStore 在单价内存中，重启会丢失，需重新写入，适合演示；生产需用 PGVector 等。</p>
+ *
+ * @author ibqy
  */
 @Configuration
 public class RagConfig {

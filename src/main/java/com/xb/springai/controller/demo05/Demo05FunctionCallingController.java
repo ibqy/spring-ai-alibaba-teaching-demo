@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
  * 当用户提问需要实时信息时，模型自动决定"该调用 get_weather 工具"，拿到结果后再组织语言。</p>
  *
  * <p><b>运行</b>：<code>GET /api/demo05/weather?city=杭州</code></p>
+ *
+ * @author ibqy
  */
 @RestController
 @RequestMapping("/api/demo05")
@@ -31,6 +33,15 @@ public class Demo05FunctionCallingController {
                 .build();
     }
 
+    /**
+     * 查询指定城市的天气情况。
+     *
+     * <p>模型会自动判断需要调用 {@link WeatherTools#getWeather} 工具，
+     * 拿到真实天气数据后再组织语言回复用户——这就是 Function Calling 的完整流程。</p>
+     *
+     * @param city 城市名称，默认"杭州"
+     * @return 模型基于工具返回数据生成的天气回答
+     */
     @GetMapping("/weather")
     public String weather(@RequestParam(defaultValue = "杭州") String city) {
         return chatClient.prompt("今天" + city + "的天气怎么样？适合出门吗？请简单回答。")

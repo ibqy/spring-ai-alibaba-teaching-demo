@@ -23,6 +23,8 @@ import java.util.Map;
  *
  * <p><b>写法参考</b>：{@code demo05.WeatherTools} / {@code demo10.AfterSalesTool}，
  * 用 {@code @Tool} 标注方法，模型即可在需要时自动调用（Function Calling）。</p>
+ *
+ * @author ibqy
  */
 public class ShopServiceTool {
 

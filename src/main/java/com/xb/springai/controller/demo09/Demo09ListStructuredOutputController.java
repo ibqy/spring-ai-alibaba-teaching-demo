@@ -1,7 +1,10 @@
 package com.xb.springai.controller.demo09;
 
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.core.ParameterizedTypeReference;
+import com.alibaba.cloud.ai.graph.agent.ReactAgent;
+import com.alibaba.cloud.ai.graph.checkpoint.savers.MemorySaver;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,50 +13,94 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * demo09：批量结构化输出 —— 一次从文本里抽出"多张"订单
+ * Demo09 - Agent 列表结构化输出（批量提取）
  *
- * <p>作者：ibqy | 日期：2026-09-10</p>
- *
- * <p><b>升级点</b>：demo03 只抽<b>一个</b>对象；这里用
- * <code>entity(new ParameterizedTypeReference&lt;List&lt;Demo09Order&gt;&gt;() {})</code>，
- * 要求模型把一整段文本里<b>所有</b>订单都解析为 JSON 数组。</p>
- *
- * <p><b>典型场景</b>：把用户粘贴的聊天记录 / 邮件 / 单据文本，自动转换为结构化数据入库。</p>
- *
- * <p><b>运行</b>：<code>GET /api/demo09/orders?text=订单A1001买了咖啡30元已支付，订单B2002买了茶叶88元待支付</code></p>
- *
- * @author ibqy
+ * 演示 ReactAgent 如何处理列表输出：
+ * 1. outputType 方式：用包装类 OrderList 持有 List<Demo09Order>
+ * 2. outputSchema 方式：手动指定 JSON Schema，直接返回数组
  */
 @RestController
 @RequestMapping("/api/demo09")
 public class Demo09ListStructuredOutputController {
 
-    private final ChatClient chatClient;
+    private final ChatModel chatModel;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public Demo09ListStructuredOutputController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
+    public Demo09ListStructuredOutputController(ChatModel chatModel) {
+        this.chatModel = chatModel;
     }
 
     /**
-     * 从自然语言文本中批量抽取订单信息。
-     *
-     * <p>通过 {@code ParameterizedTypeReference<List<Demo09Order>>} 告诉 Spring AI
-     * 期望的返回类型是列表，框架会自动引导模型输出 JSON 数组并反序列化。</p>
-     *
-     * @param text 包含订单信息的自然语言文本
-     * @return 解析出的订单列表
+     * 方式一：outputType + 包装类（推荐）
+     * 框架根据 OrderList 自动生成 Schema，返回 {"items": [...]}
      */
     @GetMapping("/orders")
     public List<Demo09Order> parse(@RequestParam(defaultValue = "订单A1001买了咖啡30元已支付，"
-            + "订单B2002买了茶叶88元待支付，订单C3003买了杯子25元已发货") String text) {
+            + "订单B2002买了茶叶88元待支付，订单C3003买了杯子25元已发货") String text) throws Exception {
 
-        // 关键：ParameterizedTypeReference 表达"泛型 List<Demo09Order>"
-        return chatClient.prompt()
-                .user(String.format(
-                        "请从中抽取所有订单，字段包括 orderId/item/price/status，"
-                                + "只输出 JSON 数组，不要返回其它内容：%s", text))
-                .call()
-                .entity(new ParameterizedTypeReference<List<Demo09Order>>() {})
-                ;
+        ReactAgent agent = ReactAgent.builder()
+                .name("order_extractor")
+                .model(chatModel)
+                .outputType(OrderList.class)
+                .saver(new MemorySaver())
+                .build();
+
+        AssistantMessage message = agent.call(String.format(
+                "请从中抽取所有订单，字段包括 orderId/item/price/status：%s", text));
+
+        String json = stripCodeFence(message.getText());
+        OrderList orderList = objectMapper.readValue(json, OrderList.class);
+        return orderList.getItems();
+    }
+
+    /**
+     * 方式二：outputSchema 手动指定 JSON Schema
+     * 直接约束模型返回 JSON 数组，无需包装类
+     */
+    @GetMapping("/orders-schema")
+    public List<Demo09Order> parseWithSchema(@RequestParam(defaultValue = "订单A1001买了咖啡30元已支付，"
+            + "订单B2002买了茶叶88元待支付") String text) throws Exception {
+
+        String schema = """
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "orderId": { "type": "string" },
+                      "item": { "type": "string" },
+                      "price": { "type": "number" },
+                      "status": { "type": "string" }
+                    },
+                    "required": ["orderId", "item", "price", "status"]
+                  }
+                }
+                """;
+
+        ReactAgent agent = ReactAgent.builder()
+                .name("order_schema_extractor")
+                .model(chatModel)
+                .outputSchema(schema)
+                .saver(new MemorySaver())
+                .build();
+
+        AssistantMessage message = agent.call(String.format(
+                "请从中抽取所有订单：%s", text));
+
+        String json = stripCodeFence(message.getText());
+        return objectMapper.readValue(json,
+                objectMapper.getTypeFactory().constructCollectionType(List.class, Demo09Order.class));
+    }
+
+    private String stripCodeFence(String text) {
+        String trimmed = text.trim();
+        if (trimmed.startsWith("```")) {
+            int firstNewline = trimmed.indexOf('\n');
+            int lastFence = trimmed.lastIndexOf("```");
+            if (firstNewline > 0 && lastFence > firstNewline) {
+                trimmed = trimmed.substring(firstNewline + 1, lastFence).trim();
+            }
+        }
+        return trimmed;
     }
 }

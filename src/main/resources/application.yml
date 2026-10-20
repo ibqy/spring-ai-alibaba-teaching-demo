@@ -48,6 +48,16 @@ spring:
         enabled: ${A2A_ENABLED:false}
 
 # ============================================================
+# demo14：Token 用量可观测 —— 模型单价配置（元/百万 token）
+# 按所用模型真实价格填写；不配置则成本按 0 展示并附说明
+# 参考（以阿里云百炼官网实时价格为准）：
+#   qwen-plus 约 输入 0.8 / 输出 2.0 元每百万 token
+# ============================================================
+demo14:
+  prompt-price-per-million: ${DEMO14_PROMPT_PRICE:0}
+  completion-price-per-million: ${DEMO14_COMPLETION_PRICE:0}
+
+# ============================================================
 # 温馨提示
 # 1) 如何获取 API Key：阿里云百炼平台 → API-KEY 管理
 #    https://help.aliyun.com/zh/model-studio/get-api-key

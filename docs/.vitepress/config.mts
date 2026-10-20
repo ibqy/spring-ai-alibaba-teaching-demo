@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: 'Spring AI Alibaba 教学',
-  description: '对接阿里云 DashScope 通义千问的 13 个渐进式教学示例，涵盖 MCP 与 A2A 协议，国内模型生态版 Spring AI 教学',
+  description: '对接阿里云 DashScope 通义千问的 14 个渐进式教学示例，涵盖 MCP 与 A2A 协议、Token 用量可观测，国内模型生态版 Spring AI 教学',
   base: '/spring-ai-alibaba-teaching-demo/',
   lastUpdated: true,
   markdown: {
@@ -35,7 +35,8 @@ export default defineConfig({
           { text: '02 · 基础能力', link: '/02-基础能力' },
           { text: '03 · 核心进阶', link: '/03-核心进阶' },
           { text: '04 · 综合实战', link: '/04-综合实战' },
-          { text: '05 · MCP 与 A2A', link: '/05-mcp-a2a' }
+          { text: '05 · MCP 与 A2A', link: '/05-mcp-a2a' },
+          { text: '06 · Token 用量可观测', link: '/06-token-observability' }
         ]
       }
     ],

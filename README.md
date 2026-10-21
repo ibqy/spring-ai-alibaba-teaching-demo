@@ -1,3 +1,18 @@
+<p align="center">
+  <a href="https://ibqy.github.io/spring-ai-alibaba-teaching-demo/"><img src="https://img.shields.io/badge/在线课件-2F6FEB?style=flat-square" alt="在线课件"></a>
+  <img src="https://img.shields.io/badge/Java-21-2266EE?style=flat-square" alt="Java 21">
+  <img src="https://img.shields.io/badge/Spring_Boot-3.5.16-6DB33F?style=flat-square" alt="Spring Boot 3.5.16">
+  <img src="https://img.shields.io/badge/Spring_AI-1.1.8-6DB33F?style=flat-square" alt="Spring AI 1.1.8">
+  <img src="https://img.shields.io/badge/Spring_AI_Alibaba-1.1.2.4-6DB33F?style=flat-square" alt="Spring AI Alibaba 1.1.2.4">
+  <img src="https://img.shields.io/github/license/ibqy/spring-ai-alibaba-teaching-demo?style=flat-square" alt="License">
+  <img src="https://img.shields.io/github/stars/ibqy/spring-ai-alibaba-teaching-demo?style=flat-square" alt="Stars">
+</p>
+
+> **课程位置** 阶段 2 · AI 应用工程入门 — 第 2 站
+> [上一站 Spring AI 主线](https://ibqy.github.io/spring-ai-teaching-demo/) → **Spring AI Alibaba** → [下一站 Semantic Kernel](https://ibqy.github.io/semantic-kernel-java-teaching-demo/) ｜ [完整学习路线](https://ibqy.github.io/curriculum)
+
+---
+
 # Spring AI Alibaba 教学 Demo
 
 > 作者：xb ｜ 日期：2026-09-10（版本基线更新于 2026-10-16）

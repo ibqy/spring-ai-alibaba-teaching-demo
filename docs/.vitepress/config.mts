@@ -25,6 +25,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
+      { text: '学习路径', link: 'https://ibqy.github.io/curriculum' },
       { text: 'GitHub', link: 'https://github.com/ibqy/spring-ai-alibaba-teaching-demo' }
     ],
     sidebar: [

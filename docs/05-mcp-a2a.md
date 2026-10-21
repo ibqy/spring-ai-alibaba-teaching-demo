@@ -41,6 +41,8 @@ spring:
 
 ### 1.3 运行
 
+**代码**：[Demo12McpClientController](../src/main/java/com/xb/springai/controller/demo12/Demo12McpClientController.java)（含 `/status` 自查端点）
+
 ```bash
 export MCP_ENABLED=true
 mvn spring-boot:run
@@ -78,6 +80,8 @@ spring:
 ```
 
 ### 2.3 运行
+
+**代码**：[Demo13A2aController](../src/main/java/com/xb/springai/controller/demo13/Demo13A2aController.java)
 
 ```bash
 export A2A_ENABLED=true

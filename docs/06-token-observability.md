@@ -39,13 +39,13 @@ Advisor 像 AOP 切面，能在"调用大模型"前后插入逻辑：
 
 ## 3. 实现要点（三段式）
 
-### 3.1 计量核心（TokenUsageMetrics）—— 纯逻辑，可离线单测
+### 3.1 计量核心（[TokenUsageMetrics](../src/main/java/com/xb/springai/controller/demo14/TokenUsageMetrics.java)）—— 纯逻辑，可离线单测
 
 - `LongAdder` 计数：Advisor 是单例，并发请求同时写，多写少读场景比 `AtomicLong` 争用小
 - 延迟分位：固定容量环形缓冲（512）+ 读时排序，P50/P95 比平均值更能反映"慢请求有多慢"
 - 成本估算：按"元/百万 token"单价，未配置时按 0 展示并说明原因，不显示误导性数字
 
-### 3.2 计量 Advisor（TokenUsageAdvisor）—— 装饰器，只读不改
+### 3.2 计量 Advisor（[TokenUsageAdvisor](../src/main/java/com/xb/springai/controller/demo14/TokenUsageAdvisor.java)）—— 装饰器，只读不改
 
 ```java
 public ChatClientResponse adviseCall(ChatClientRequest request, CallAdvisorChain chain) {
@@ -64,7 +64,7 @@ public ChatClientResponse adviseCall(ChatClientRequest request, CallAdvisorChain
 
 三条铁律：**先放行再记账**（不能吞响应）、**只读不改**（装饰器透明）、**失败也记账**（超时耗时是排查线索）。
 
-### 3.3 端点（Demo14TokenObservabilityController）
+### 3.3 端点（[Demo14TokenObservabilityController](../src/main/java/com/xb/springai/controller/demo14/Demo14TokenObservabilityController.java)）
 
 ```bash
 # 产生调用（自动计量）
